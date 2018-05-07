@@ -6,30 +6,32 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.8294314381270903" layoutX="7.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <SplitPane dividerPositions="0.29797979797979796" layoutX="7.0" prefHeight="492.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.49379652605459057" layoutX="7.0" prefHeight="492.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="400.0" prefHeight="490.0" prefWidth="400.0">
+                      <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="213.0" prefHeight="491.0" prefWidth="300.0">
                            <children>
-                              <TableView layoutY="8.0" prefHeight="490.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView layoutX="14.0" layoutY="67.0" prefHeight="491.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn prefWidth="102.33334350585938" text="ID" />
+                                  <TableColumn prefWidth="196.0" text="Name" />
                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="400.0" prefHeight="490.0" prefWidth="400.0">
+                      <AnchorPane minHeight="0.0" minWidth="400.0" prefHeight="491.0" prefWidth="499.0">
                            <children>
-                              <TableView layoutX="-7.0" prefHeight="490.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView layoutX="45.0" layoutY="146.0" prefHeight="491.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn prefWidth="75.0" text="ID" />
+                                  <TableColumn prefWidth="146.3333740234375" text="Good" />
+                                    <TableColumn prefWidth="80.6666259765625" text="Price" />
+                                    <TableColumn prefWidth="187.0" text="Category name" />
                                 </columns>
                               </TableView>
                            </children>

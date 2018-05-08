@@ -1,12 +1,27 @@
 package DBController;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Categories {
-    public int id;
-    public String name;
+    private final SimpleIntegerProperty id;
+    private final SimpleStringProperty name;
+
+
 
     public Categories(int id, String name){
-        this.id = id;
-        this.name = name;
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+    }
+
+    public IntegerProperty idProperty(){
+        return id;
+    }
+
+    public StringProperty nameProperty(){
+        return name;
     }
 
     @Override

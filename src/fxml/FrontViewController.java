@@ -39,6 +39,7 @@ public class FrontViewController {
         db = new DBHandler();
         try{
             con = db.getConnection();
+            buildData();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -46,6 +47,8 @@ public class FrontViewController {
         }
 
     }
+
+
     public void buildData(){
         catData = FXCollections.observableArrayList();
         try {

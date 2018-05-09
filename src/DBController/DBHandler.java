@@ -20,8 +20,8 @@ WHERE c.name = " + parentQuery + " AND c.name = p.category_name"
 public class DBHandler {
     //todo: в SQL запрос должно подставляться значение из таблицы categories.name
     public Connection getConnection() throws ClassNotFoundException, SQLException{
-        Class.forName(org.sqlite.JDBC);
-        return DriverManager.getConnection("jdbc:sqlite:./SQLite/myfin.db");
+        DriverManager.registerDriver(new JDBC());
+        return DriverManager.getConnection("jdbc:sqlite:C:/IdeaProjects/database_FX_proj/src/SQLite/myfin.db");
     }
 //    private static final String DB_PATH = "jdbc:sqlite:./SQLite/myfin.db";
 //

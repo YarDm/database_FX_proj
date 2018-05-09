@@ -1,5 +1,6 @@
 package main;
 
+import fxml.FrontViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +31,8 @@ public class DbFx_main extends Application {
             this.primaryStage.setTitle("Отчетное задание БД Java");
             this.primaryStage.setScene(scene);
             this.primaryStage.show();
+
+            FrontViewController fvc = new FrontViewController();
 
         } catch (Exception e){
             e.printStackTrace();

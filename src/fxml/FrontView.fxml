@@ -16,10 +16,10 @@
                     <items>
                       <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="213.0" prefHeight="491.0" prefWidth="300.0">
                            <children>
-                              <TableView layoutX="14.0" layoutY="67.0" prefHeight="491.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="catTable" layoutX="14.0" layoutY="67.0" prefHeight="491.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="102.33334350585938" text="ID" />
-                                  <TableColumn prefWidth="196.0" text="Name" />
+                                  <TableColumn fx:id="idColumn" prefWidth="102.33334350585938" text="ID" />
+                                  <TableColumn fx:id="nameColumn" prefWidth="196.0" text="Name" />
                                 </columns>
                               </TableView>
                            </children>

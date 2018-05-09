@@ -16,6 +16,13 @@ public class Categories {
         this.name = new SimpleStringProperty(name);
     }
 
+    public Integer getID(){
+        return id.get();
+    }
+
+    public String getName(){
+        return name.get();
+    }
     public IntegerProperty idProperty(){
         return id;
     }

@@ -26,12 +26,12 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="400.0" prefHeight="491.0" prefWidth="499.0">
                            <children>
-                              <TableView layoutX="45.0" layoutY="146.0" prefHeight="491.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="prodTable" layoutX="45.0" layoutY="146.0" prefHeight="491.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="ID" />
-                                  <TableColumn prefWidth="146.3333740234375" text="Good" />
-                                    <TableColumn prefWidth="80.6666259765625" text="Price" />
-                                    <TableColumn prefWidth="187.0" text="Category name" />
+                                  <TableColumn fx:id="idPColumn" prefWidth="75.0" text="ID" />
+                                  <TableColumn fx:id="goodColumn" prefWidth="146.3333740234375" text="Good" />
+                                    <TableColumn fx:id="priceColumn" prefWidth="80.6666259765625" text="Price" />
+                                    <TableColumn fx:id="catNameColumn" prefWidth="187.0" text="Category name" />
                                 </columns>
                               </TableView>
                            </children>
@@ -42,7 +42,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button layoutX="47.0" layoutY="27.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="711.0" text="Do something" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0" />
+                  <Button layoutX="47.0" layoutY="27.0" mnemonicParsing="false" onAction="#doSomethingButton" prefHeight="54.0" prefWidth="711.0" text="Do something" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0" />
                </children>
             </AnchorPane>
         </items>

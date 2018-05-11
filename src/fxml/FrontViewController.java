@@ -1,10 +1,10 @@
 package fxml;
 
+import DBController.Categories;
 import DBController.DBHandler;
+import DBController.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.DbFx_main;
-import DBController.Categories;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,6 +13,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/*
+* Класс реализует модель данных для таблицы а так же запросы к БД
+*
+* Все запросы должны быть прописаны заранее для исклюючения SQL-инъекций
+* TODO: Дописать слушатель события выбора строки в первой таблице.
+* Запрос в дочернюю базу должен производиться на основе выбранной строки родительской, то есть:
+* String parentQuery = categories.name;
+* Запрос в дочернюю базу будет выглядеть так:
+* "SELECT p.* FROM categories as c, products as p
+* WHERE c.name = " + parentQuery + " AND c.name = p.category_name"
+ */
 public class FrontViewController {
     @FXML
     private TableView<Categories> catTable;
@@ -21,39 +33,67 @@ public class FrontViewController {
     @FXML
     private TableColumn<Categories, String> nameColumn;
 
-    private DbFx_main dbfx;
+    @FXML
+    private TableView<Product> prodTable;
+    @FXML
+    private TableColumn<Product, Integer> idPColumn;
+    @FXML
+    private TableColumn<Product, String> goodColumn;
+    @FXML
+    private TableColumn<Product,Double> priceColumn;
+    @FXML
+    private TableColumn<Product, String> catNameColumn;
 
-    public FrontViewController(){
-
-    }
-
-    private ObservableList<Categories> catData;
-    DBHandler db;
-    Connection con;
+    private DBHandler db;
+    private Connection con;
 
     @FXML
-    private void initialize(){
-        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    private void doSomethingButton(){
 
         db = new DBHandler();
         try{
             con = db.getConnection();
-            buildData();
+            buildCatData();
+            buildProdData();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
+    public FrontViewController(){
+    }
 
-    public void buildData(){
+    @FXML
+    private void initialize(){
+        //инициализация источника данных в таблице для каждого столбца
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+
+        idPColumn.setCellValueFactory(cellData -> cellData.getValue().idProdProperty().asObject());
+        goodColumn.setCellValueFactory(cellData -> cellData.getValue().goodProperty());
+        priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+        catNameColumn.setCellValueFactory(cellData -> cellData.getValue().cnProperty());
+
+        catTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> rebuildProdData(newValue));
+    }
+
+/*
+Для JavaFX данные в TableView поставляются только из ObservableArrayList,
+поэтому результат запроса в базу упаковываем в эту структуру данных
+ */
+    private ObservableList<Categories> catData;
+
+    /*
+    Метод для превращения SQL запроса в понятный JavaFX список табличных данных
+     */
+    public void buildCatData(){
         catData = FXCollections.observableArrayList();
         try {
-            String quarySQL = "SELECT * FROM categories ORDER BY name";
-            ResultSet rs =  con.createStatement().executeQuery(quarySQL);
+            String querySQL = "SELECT * FROM categories";
+            ResultSet rs =  con.createStatement().executeQuery(querySQL);
             while (rs.next()){
                 Categories cat = new Categories(rs.getInt("id"), rs.getString("name"));
                 catData.add(cat);
@@ -63,6 +103,48 @@ public class FrontViewController {
             e.printStackTrace();
         }
 
+    }
+    //Список элементов из таблицы products
+    private ObservableList<Product> prodData;
+
+    //метод для запроса из таблицы products и добавления полученных данных в TableView prodTable
+    public void buildProdData(){
+        prodData = FXCollections.observableArrayList();
+        try{
+            String querySQL = "SELECT * FROM products";
+            ResultSet rs = con.createStatement().executeQuery(querySQL);
+            while (rs.next()){
+                Product product = new Product(rs.getInt("id"), rs.getString("good"),
+                        rs.getDouble("price"), rs.getString("category_name"));
+                prodData.add(product);
+            }
+            prodTable.setItems(prodData);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Метод для запроса из таблицы products и добавления полученных данных в TableView prodTable при выборе строки в
+    //родительской таблице
+    public void rebuildProdData(Categories cat){
+        prodData.clear();
+        prodData = FXCollections.observableArrayList();
+        String name = cat.getName();
+        try{
+            String querySQL = "SELECT p.* FROM categories as c, products as p WHERE c.name = '" + name +
+                    "' AND c.name = p.category_name";
+            ResultSet rs = con.createStatement().executeQuery(querySQL);
+            while(rs.next()){
+                Product product = new Product(rs.getInt("id"), rs.getString("good"),
+                        rs.getDouble("price"), rs.getString("category_name"));
+                prodData.add(product);
+            }
+            prodTable.setItems(prodData);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

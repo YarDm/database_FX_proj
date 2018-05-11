@@ -23,16 +23,12 @@ public class Categories {
     public String getName(){
         return name.get();
     }
+
     public IntegerProperty idProperty(){
         return id;
     }
 
     public StringProperty nameProperty(){
         return name;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("ID: %s | Category: %s", this.id, this.name);
     }
 }

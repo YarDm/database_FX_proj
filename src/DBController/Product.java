@@ -1,21 +1,35 @@
 package DBController;
 
+import javafx.beans.property.*;
+
 public class Product {
-    public int id;
-    public String good;
-    public double price;
-    public String category_name;
+    public SimpleIntegerProperty id;
+    public SimpleStringProperty good;
+    public SimpleDoubleProperty price;
+    public SimpleStringProperty category_name;
 
     public Product(int id, String good, double price, String category_name){
-        this.id = id;
-        this.good = good;
-        this.price = price;
-        this.category_name = category_name;
+        this.id = new SimpleIntegerProperty(id);
+        this.good = new SimpleStringProperty(good);
+        this.price = new SimpleDoubleProperty(price);
+        this.category_name = new SimpleStringProperty(category_name);
     }
 
-    @Override
-    public String toString(){
-        return String.format("ID: %s | Good: %s | Price: %s | Category: %s",
-                this.id, this.good, this.price, this.category_name);
+    public IntegerProperty idProdProperty(){
+        return id;
     }
+
+    public StringProperty goodProperty(){
+        return good;
+    }
+
+    public DoubleProperty priceProperty(){
+        return price;
+    }
+
+    public StringProperty cnProperty(){
+        return category_name;
+    }
+
+
 }

@@ -3,10 +3,10 @@ package DBController;
 import javafx.beans.property.*;
 
 public class Product {
-    public SimpleIntegerProperty id;
-    public SimpleStringProperty good;
-    public SimpleDoubleProperty price;
-    public SimpleStringProperty category_name;
+    private final SimpleIntegerProperty id;
+    private final SimpleStringProperty good;
+    private final SimpleDoubleProperty price;
+    private final SimpleStringProperty category_name;
 
     public Product(int id, String good, double price, String category_name){
         this.id = new SimpleIntegerProperty(id);

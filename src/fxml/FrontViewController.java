@@ -6,6 +6,7 @@ import DBController.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -18,7 +19,6 @@ import java.sql.SQLException;
 * Класс реализует модель данных для таблицы а так же запросы к БД
 *
 * Все запросы должны быть прописаны заранее для исклюючения SQL-инъекций
-* TODO: Дописать слушатель события выбора строки в первой таблице.
 * Запрос в дочернюю базу должен производиться на основе выбранной строки родительской, то есть:
 * String parentQuery = categories.name;
 * Запрос в дочернюю базу будет выглядеть так:
@@ -26,6 +26,15 @@ import java.sql.SQLException;
 * WHERE c.name = " + parentQuery + " AND c.name = p.category_name"
  */
 public class FrontViewController {
+
+    private ObservableList<Categories> catData;
+    //Список элементов из таблицы products
+    private ObservableList<Product> prodData;
+    private DBHandler db;
+    private Connection con;
+
+    @FXML
+    Button button;
     @FXML
     private TableView<Categories> catTable;
     @FXML
@@ -44,9 +53,6 @@ public class FrontViewController {
     @FXML
     private TableColumn<Product, String> catNameColumn;
 
-    private DBHandler db;
-    private Connection con;
-
     @FXML
     private void doSomethingButton(){
 
@@ -60,9 +66,9 @@ public class FrontViewController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public FrontViewController(){
+        catTable.getSelectionModel().select(0);
+        button.setDisable(true);
+        button.setText("Подключени к базе уже выполнено");
     }
 
     @FXML
@@ -84,7 +90,7 @@ public class FrontViewController {
 Для JavaFX данные в TableView поставляются только из ObservableArrayList,
 поэтому результат запроса в базу упаковываем в эту структуру данных
  */
-    private ObservableList<Categories> catData;
+
 
     /*
     Метод для превращения SQL запроса в понятный JavaFX список табличных данных
@@ -104,8 +110,7 @@ public class FrontViewController {
         }
 
     }
-    //Список элементов из таблицы products
-    private ObservableList<Product> prodData;
+
 
     //метод для запроса из таблицы products и добавления полученных данных в TableView prodTable
     public void buildProdData(){
@@ -146,5 +151,4 @@ public class FrontViewController {
             e.printStackTrace();
         }
     }
-
 }

@@ -42,7 +42,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button layoutX="47.0" layoutY="27.0" mnemonicParsing="false" onAction="#doSomethingButton" prefHeight="54.0" prefWidth="711.0" text="Do something" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0" />
+                  <Button fx:id="button" layoutX="47.0" layoutY="27.0" mnemonicParsing="false" onAction="#doSomethingButton" prefHeight="54.0" prefWidth="711.0" text="Do something" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0" />
                </children>
             </AnchorPane>
         </items>

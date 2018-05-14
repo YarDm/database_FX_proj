@@ -1,10 +1,14 @@
 package DBController;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
+
+
+/*
+ * POJO (plain old java object)
+ * структура в которой будут храниться данные из БД
+ * а также загружаться в TableView для таблицы Categories
+ */
 public class Categories {
     private final SimpleIntegerProperty id;
     private final SimpleStringProperty name;

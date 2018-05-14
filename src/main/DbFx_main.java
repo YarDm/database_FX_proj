@@ -8,16 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /*
-*в JavaFX, который входит в стандартную комплектацию JDK,
-*стартовая точка приложения определяется методом старт и наслодования от Application
+* в JavaFX, который входит в стандартную комплектацию JDK,
+* стартовая точка приложения определяется методом @method: start() и наслодования от Application
 */
 public class DbFx_main extends Application {
 
     private Stage primaryStage;
-
-    public DbFx_main(){
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -32,6 +28,7 @@ public class DbFx_main extends Application {
             this.primaryStage.setScene(scene);
             this.primaryStage.show();
 
+            // ссылка на контроллер, выполняет его создание и применение в управляющем методе
             FrontViewController fvc = new FrontViewController();
 
         } catch (Exception e){
@@ -39,6 +36,8 @@ public class DbFx_main extends Application {
         }
     }
 
+    // можно не использовать метод main(), но в случае использования в нем вызывается метод launch()
+    // с таким же массивом аргументов
     public static void main(String[] args){
         launch(args);
     }

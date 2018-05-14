@@ -2,6 +2,11 @@ package DBController;
 
 import javafx.beans.property.*;
 
+/*
+ * POJO (plain old java object)
+ * структура в которой будут храниться данные из БД
+ * а также загружаться в TableView для таблицы Products
+ */
 public class Product {
     private final SimpleIntegerProperty id;
     private final SimpleStringProperty good;

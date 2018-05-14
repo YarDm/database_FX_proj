@@ -16,14 +16,10 @@ import java.sql.SQLException;
 
 
 /*
-* Класс реализует модель данных для таблицы а так же запросы к БД
-*
-* Все запросы должны быть прописаны заранее для исклюючения SQL-инъекций
-* Запрос в дочернюю базу должен производиться на основе выбранной строки родительской, то есть:
-* String parentQuery = categories.name;
-* Запрос в дочернюю базу будет выглядеть так:
-* "SELECT p.* FROM categories as c, products as p
-* WHERE c.name = " + parentQuery + " AND c.name = p.category_name"
+ * Класс реализует модель данных для таблицы а так же запросы к БД
+ *
+ * Все запросы должны быть прописаны заранее для исклюючения SQL-инъекций
+ * Запрос в дочернюю базу должен производиться на основе выбранной строки родительской
  */
 public class FrontViewController {
 
@@ -66,14 +62,16 @@ public class FrontViewController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        // Для показа всей таблицы Products при нажатии кнопки необходимо закомментировать следующую строку
         catTable.getSelectionModel().select(0);
+
         button.setDisable(true);
         button.setText("Подключени к базе уже выполнено");
     }
 
     @FXML
     private void initialize(){
-        //инициализация источника данных в таблице для каждого столбца
+        // инициализация источника данных в таблице для каждого столбца
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
@@ -87,14 +85,13 @@ public class FrontViewController {
     }
 
 /*
-Для JavaFX данные в TableView поставляются только из ObservableArrayList,
-поэтому результат запроса в базу упаковываем в эту структуру данных
+* Для JavaFX данные в TableView поставляются только из ObservableArrayList,
+* поэтому результат запроса в базу упаковываем в эту структуру данных
  */
 
 
-    /*
-    Метод для превращения SQL запроса в понятный JavaFX список табличных данных
-     */
+
+    // метод для запроса из таблицы categories и добавления полученных данных в TableView catTable
     public void buildCatData(){
         catData = FXCollections.observableArrayList();
         try {
@@ -112,7 +109,7 @@ public class FrontViewController {
     }
 
 
-    //метод для запроса из таблицы products и добавления полученных данных в TableView prodTable
+    // метод для запроса из таблицы products и добавления полученных данных в TableView prodTable
     public void buildProdData(){
         prodData = FXCollections.observableArrayList();
         try{
@@ -130,8 +127,11 @@ public class FrontViewController {
         }
     }
 
-    //Метод для запроса из таблицы products и добавления полученных данных в TableView prodTable при выборе строки в
-    //родительской таблице
+    /*
+     * Метод для запроса из таблицы products
+     * и добавления полученных данных в TableView prodTable
+     * при выборе строки в родительской таблице
+     */
     public void rebuildProdData(Categories cat){
         prodData.clear();
         prodData = FXCollections.observableArrayList();
